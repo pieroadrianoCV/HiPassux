@@ -1,11 +1,11 @@
-# PASSUS
+# PASSUX
 
 ## Descripción
 
 Esta es una aplicación web desarrollada con Flask, utilizando un enfoque de **Domain-Driven Design (DDD)** y **Model-View-Controller (MVC)**. La aplicación está configurada para trabajar con una base de datos MySQL utilizando `PyMySQL` y `Flask-Migrate` para manejar las migraciones.
 
 ## Estructura del Proyecto
-    ```bash
+    ```
     my_flask_app/
     │
     ├── app/
