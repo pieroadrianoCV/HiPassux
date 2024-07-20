@@ -5,64 +5,65 @@
 Esta es una aplicación web desarrollada con Flask, utilizando un enfoque de **Domain-Driven Design (DDD)** y **Model-View-Controller (MVC)**. La aplicación está configurada para trabajar con una base de datos MySQL utilizando `PyMySQL` y `Flask-Migrate` para manejar las migraciones.
 
 ## Estructura del Proyecto
-my_flask_app/
-│
-├── app/
-│   ├── __init__.py
-│   ├── controllers/
-│   │   ├── __init__.py
-│   │   ├── user_controller.py
-│   │   └── ... (otros controladores)
-│   ├── domain/
-│   │   ├── __init__.py
-│   │   ├── entities/
-│   │   │   ├── __init__.py
-│   │   │   ├── user.py
-│   │   │   └── ... (otras entidades)
-│   │   ├── repositories/
-│   │   │   ├── __init__.py
-│   │   │   ├── user_repository.py
-│   │   │   └── ... (otros repositorios)
-│   │   ├── services/
-│   │   │   ├── __init__.py
-│   │   │   ├── user_service.py
-│   │   │   └── ... (otros servicios)
-│   ├── templates/
-│   │   ├── base.html
-│   │   ├── index.html
-│   │   └── ... (otras plantillas)
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── ... (archivos CSS)
-│   │   ├── js/
-│   │   │   └── ... (archivos JavaScript)
-│   │   └── img/
-│   │       └── ... (imágenes)
-│   ├── viewmodels/
-│   │   ├── __init__.py
-│   │   ├── user_viewmodel.py
-│   │   └── ... (otros viewmodels)
-│   ├── config.py
-│   ├── routes.py
-│   └── extensions.py
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_user.py
-│   └── ... (otros tests)
-│
-├── migrations/
-│   └── ... (archivos de migración)
-│
-├── venv/
-│   └── ... (entorno virtual)
-│
-├── .env
-├── .gitignore
-├── requirements.txt
-├── run.py
-└── README.md
-
+    ```bash
+    my_flask_app/
+    │
+    ├── app/
+    │   ├── __init__.py
+    │   ├── controllers/
+    │   │   ├── __init__.py
+    │   │   ├── user_controller.py
+    │   │   └── ... (otros controladores)
+    │   ├── domain/
+    │   │   ├── __init__.py
+    │   │   ├── entities/
+    │   │   │   ├── __init__.py
+    │   │   │   ├── user.py
+    │   │   │   └── ... (otras entidades)
+    │   │   ├── repositories/
+    │   │   │   ├── __init__.py
+    │   │   │   ├── user_repository.py
+    │   │   │   └── ... (otros repositorios)
+    │   │   ├── services/
+    │   │   │   ├── __init__.py
+    │   │   │   ├── user_service.py
+    │   │   │   └── ... (otros servicios)
+    │   ├── templates/
+    │   │   ├── base.html
+    │   │   ├── index.html
+    │   │   └── ... (otras plantillas)
+    │   ├── static/
+    │   │   ├── css/
+    │   │   │   └── ... (archivos CSS)
+    │   │   ├── js/
+    │   │   │   └── ... (archivos JavaScript)
+    │   │   └── img/
+    │   │       └── ... (imágenes)
+    │   ├── viewmodels/
+    │   │   ├── __init__.py
+    │   │   ├── user_viewmodel.py
+    │   │   └── ... (otros viewmodels)
+    │   ├── config.py
+    │   ├── routes.py
+    │   └── extensions.py
+    │
+    ├── tests/
+    │   ├── __init__.py
+    │   ├── test_user.py
+    │   └── ... (otros tests)
+    │
+    ├── migrations/
+    │   └── ... (archivos de migración)
+    │
+    ├── venv/
+    │   └── ... (entorno virtual)
+    │
+    ├── .env
+    ├── .gitignore
+    ├── requirements.txt
+    ├── run.py
+    └── README.md
+    ```
 
 
 ## Instalación
