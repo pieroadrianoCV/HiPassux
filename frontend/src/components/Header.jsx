@@ -25,7 +25,7 @@ export const HeaderLobby = () => {
         <img src="src/static/img/perfil.png" alt="Logoo" className="logo" />
         <img src="src/static/img/welcome.png" alt="welcome" className="welcome" />
         <nav>
-          <a>Contact</a>
+          <li>Contact</li>
           <button className="sign-in">Sign in</button>
           <button className="register" onClick={handleLoginClick}>Register</button>
         </nav>

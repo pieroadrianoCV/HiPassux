@@ -5,5 +5,3 @@ import './static/stylesLobby.css';
 
 
 ReactDOM.render(<Lobby />, document.getElementById('lobby'));
-
-

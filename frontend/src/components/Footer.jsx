@@ -8,28 +8,28 @@ const Footer = () => {
           <div>
             <h3>About Us</h3>
             <ul>
-              <li><a href="#">Our Story</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Press</a></li>
+              <li>Our Story</li>
+              <li>Blog</li>
+              <li>Careers</li>
+              <li>Press</li>
             </ul>
           </div>
           <div>
             <h3>Support</h3>
             <ul>
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Community Guidelines</a></li>
-              <li><a href="#">Safety Tips</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li>Help Center</li>
+              <li>Community Guidelines</li>
+              <li>Safety Tips</li>
+              <li>Contact Us</li>
             </ul>
           </div>
           <div>
             <h3>Legal</h3>
             <ul>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Cookie Policy</a></li>
-              <li><a href="#">Accessibility</a></li>
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+              <li>Cookie Policy</li>
+              <li>Accessibility</li>
             </ul>
           </div>
         </div>
