@@ -33,3 +33,14 @@ export const HeaderLobby = () => {
     </header>
   );
 };
+
+export const HeaderPost = () => {
+  return (
+    <header>
+      <div className="container">
+        <img src="src/static/img/perfil.png" alt="Logoo" className="logo" />
+        <img src="src/static/img/welcome.png" alt="welcome" className="welcome" />
+      </div>
+    </header>
+  );
+};
