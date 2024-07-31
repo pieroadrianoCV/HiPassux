@@ -16,6 +16,19 @@ class UserRepository:
         db.session.commit()
 
     @staticmethod
+    def remove(user):
+        try:
+            # Delete the user object from the session
+            db.session.delete(user)
+            # Commit the transaction to save the changes to the database
+            db.session.commit()
+        except Exception as e:
+            # Rollback the transaction in case of an error
+            db.session.rollback()
+            return {'error': f'Ocurrió un error al eliminar el usuario: {str(e)}'}
+        return {'message': 'Usuario eliminado con éxito'}
+
+    @staticmethod
     def get_user_by_id(user_id):
         return User.query.get(user_id)
     

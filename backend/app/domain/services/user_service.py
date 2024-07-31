@@ -10,11 +10,11 @@ class UserService:
 
     @staticmethod
     def get_user_by_id(user_id):
-        return UserRepository.query.get(user_id)
+        return UserRepository.get_user_by_id(user_id)
 
     @staticmethod
     def get_user_by_username(username):
-        user = UserRepository.query.filter_by(username)
+        user = UserRepository.get_user_by_username(username)
         return user
 
     @staticmethod
@@ -51,15 +51,15 @@ class UserService:
             phone_number=phone_number,
             gender=gender,
             email=email,
-            password=generate_password_hash(password, method='sha256')
+            password=generate_password_hash(password, method='pbkdf2:sha256')  # Use pbkdf2:sha256
         )
-        UserRepository.add(new_user)
+        UserRepository.add_user(new_user)
         return new_user
 
     @staticmethod
     def update_user(user_id, data):
         try:
-            usuario = User.query.get(user_id)
+            usuario = UserRepository.get_user_by_id(user_id)
             if not usuario:
                 return {'error': 'Usuario no encontrado'}
 
@@ -81,7 +81,7 @@ class UserService:
             if 'email' in data:
                 usuario.email = data['email']
             if 'password' in data:
-                usuario.password = generate_password_hash(data['password'], method='sha256')
+                usuario.password = generate_password_hash(data['password'], method='pbkdf2:sha256')
 
             UserRepository.update_user(usuario)
             return usuario
