@@ -23,6 +23,21 @@ class UserService:
         return user
 
     @staticmethod
+    def delete_user(user_id):
+        user = UserRepository.get_user_by_id(user_id)
+        if user:
+            UserRepository.remove(user)
+            return True
+        return False
+
+    @staticmethod
+    def authenticate(username, password):
+        user = UserRepository.get_user_by_username(username)
+        if user and user.password == password:
+            return user
+        return None
+
+    @staticmethod
     def authenticate_user(username, password):
         return UserRepository.verify_user(username, password)
 
@@ -41,6 +56,17 @@ class UserService:
         UserRepository.add(new_user)
         return new_user
 
+
+    @staticmethod
+    def update_user(user_id, data):
+        user = UserRepository.get_user_by_id(user_id)
+        if user:
+            for key, value in data.items():
+                if hasattr(user, key):
+                    setattr(user, key, value)
+            UserRepository.update(user)  # Usa update para guardar cambios
+            return user
+        return None
 
     @staticmethod
     def update_user(user_id, data):
