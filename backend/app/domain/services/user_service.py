@@ -18,4 +18,5 @@ class UserService:
             email=email,
             password=password
         )
-        UserRepository.add_user(new_user)
+        UserRepository.add(new_user)
+        return new_user
