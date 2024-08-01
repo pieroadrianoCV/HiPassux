@@ -46,8 +46,7 @@ class UserRepository:
         if user:
             db.session.delete(user)
             db.session.commit()
-            return True
-        return False
+        return user
     
     @staticmethod
     def get_user_by_username(username):

@@ -1,5 +1,5 @@
 from app.domain.repositories.user_repository import User,UserRepository
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 class UserService:
@@ -24,16 +24,18 @@ class UserService:
 
     @staticmethod
     def delete_user(user_id):
-        user = UserRepository.get_user_by_id(user_id)
-        if user:
-            UserRepository.remove(user)
-            return True
-        return False
+        if not user_id or not isinstance(user_id, int):
+            raise ValueError("Invalid user_id")
+        
+        user = UserRepository.delete_user(user_id)
+        if user is None:
+            raise ValueError("User not found")
+        return user
 
     @staticmethod
     def authenticate(username, password):
         user = UserRepository.get_user_by_username(username)
-        if user and user.password == password:
+        if user and check_password_hash(user.password, password):  
             return user
         return None
 

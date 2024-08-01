@@ -4,4 +4,4 @@ class CommentService:
 
     @staticmethod
     def get_all_comments():
-        return CommentRepository.get_all_Comments()
+        return CommentRepository.get_all_comments()
