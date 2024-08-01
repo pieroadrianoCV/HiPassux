@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.domain.services.user_service import UserService
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 user_api = Blueprint('user_api', 'user_api', url_prefix='/api/users')
 
@@ -10,9 +11,18 @@ def get_users():
     users = UserService.get_all_users()
     return jsonify([user.to_dict() for user in users])
 
+# Ruta para obtener los datos de un usuario por su id
 @user_api.route('/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user = UserService.get_user_by_id(user_id)
+    if user:
+        return jsonify(user.to_dict())
+    return jsonify({'error': error_User}), 404
+
+# Ruta para obtener los datos de un usuario por su username
+@user_api.route('/username/<string:username>', methods=['GET'])
+def get_user_by_username(username):
+    user = UserService.get_user_by_username(username)
     if user:
         return jsonify(user.to_dict())
     return jsonify({'error': error_User}), 404
@@ -45,4 +55,52 @@ def delete_user(user_id):
     success = UserService.delete_user(user_id)
     if success:
         return jsonify({'message': 'User deleted successfully'})
+    return jsonify({'error': error_User}), 404
+
+
+
+
+@user_api.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+
+    # Verifica las credenciales del usuario
+    user = UserService.authenticate(username, password)
+
+    if user:
+        # Genera un token JWT
+        access_token = create_access_token(identity=user.user_id)
+        return jsonify(access_token=access_token), 200
+    else:
+        return jsonify({'error': 'Invalid username or password'}), 401
+
+@user_api.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
+
+
+
+# Ruta para eliminar un usuario por su username
+@user_api.route('/username/<string:username>', methods=['DELETE'])
+def delete_user_by_username(username):
+    user = UserService.get_user_by_username(username)
+    if user:
+        result = UserService.remove_user_by_username(username)
+        if result.get('error'):
+            return jsonify(result), 400
+        return jsonify({'message': 'User successfully deleted'}), 200
+    return jsonify({'error': error_User}), 404
+
+
+
+@user_api.route('/username/<string:username>', methods=['PUT'])
+def update_user_by_username(username):
+    data = request.json
+    updated_user = UserService.update_user_by_username(username, data)
+    if updated_user:
+        return jsonify(updated_user.to_dict())
     return jsonify({'error': error_User}), 404

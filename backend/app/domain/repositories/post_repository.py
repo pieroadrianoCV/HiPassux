@@ -24,13 +24,6 @@ class PostRepository:
 
     @staticmethod
     def update_post(post_id, updated_data):
-        """
-        Update an existing post with new data.
-        
-        Args:
-            post_id: The ID of the post to be updated.
-            updated_data: A dictionary with the updated fields.
-        """
         post = Post.query.get(post_id)
         if post:
             for key, value in updated_data.items():
