@@ -1140,3 +1140,126 @@ npm start en la carpeta server
 npm start en la carpeta socket
 npm start en la carpeta client
 ```
+
+# Documentación de Arquitectura de Software
+
+## 1. Introducción
+
+### 1.1 Propósito
+
+El propósito de este documento es proporcionar una descripción detallada de la arquitectura de software de nuestro sistema de red social. Este documento está dirigido a los desarrolladores, arquitectos de software, y cualquier otro miembro del equipo de desarrollo. Servirá como una guía fundamental para la implementación, el mantenimiento y la futura expansión del sistema, asegurando que los componentes y sus interacciones estén definidos y comprendidos.
+
+### 1.2 Alcance
+
+- Descripción del sistema y sus objetivos
+- Vista de la arquitectura (casos de uso, lógica, desarrollo, procesos y despliegue)
+- Modelos de dominio
+- Componentes y patrones de diseño
+- Arquitectura en capas
+- Prácticas de codificación limpia
+- Estilos de programación
+- Principios SOLID
+- Conceptos de Diseño Orientado al Dominio (DDD)
+
+### 1.3 Definiciones, Acrónimos y Abreviaturas
+
+- **API**: Interfaz de Programación de Aplicaciones (Application Programming Interface)
+- **DDD**: Diseño Orientado al Dominio (Domain-Driven Design)
+- **DB**: Base de Datos (Database)
+- **UI**: Interfaz de Usuario (User Interface)
+- **MVC**: Modelo-Vista-Controlador (Model-View-Controller)
+- **JWT**: JSON Web Token
+- **CRUD**: Crear, Leer, Actualizar, Borrar (Create, Read, Update, Delete)
+
+## 2. Descripción del Sistema
+
+### 2.1 Descripción General
+
+El sistema de red social desarrollado tiene como propósito principal proporcionar una plataforma en la que los usuarios puedan interactuar, compartir contenido y establecer conexiones sociales. Las funcionalidades principales del sistema incluyen:
+
+- **Registro y Autenticación de Usuarios**: Los usuarios pueden registrarse y autenticarse de manera segura.
+- **Perfil de Usuario**: Los usuarios pueden crear y actualizar su perfil personal, incluyendo información básica y fotografía.
+- **Publicación de Contenidos**: Los usuarios pueden crear, editar y eliminar publicaciones de texto, imágenes y videos.
+- **Interacción Social**: Los usuarios pueden interactuar con las publicaciones a través de comentarios y reacciones (me gusta, compartir).
+
+### 2.2 Objetivos
+
+**Objetivos de Diseño:**
+
+- **Seguridad y Privacidad**: Proteger los datos de los usuarios mediante autenticación segura y cifrado de información sensible.
+- **Escalabilidad**: Diseñar el sistema de manera que pueda manejar un gran número de usuarios y un alto volumen de interacciones sin pérdida de rendimiento.
+- **Usabilidad**: Garantizar una interfaz de usuario intuitiva y accesible que permita una fácil navegación y uso de todas las funcionalidades.
+- **Mantenibilidad**: Implementar una arquitectura modular que facilite la actualización y mantenimiento del sistema.
+- **Rendimiento**: Asegurar tiempos de respuesta rápidos y un rendimiento óptimo bajo carga.
+
+## 3. Vista de la Arquitectura
+
+### 3.1 Vista de Casos de Uso
+
+En esta sección se describen los principales casos de uso del sistema de red social y cómo interactúan con los componentes arquitectónicos.
+
+**Casos de Uso Principales:**
+
+- **Registro de Usuario:**
+  - **Actor**: Usuario
+  - **Descripción**: El usuario se registra proporcionando sus datos personales.
+  - **Componentes Involucrados**: Frontend (Formulario de Registro), Backend (Controlador de Registro, Servicio de Usuario), Base de Datos (Tabla de Usuarios).
+
+- **Autenticación de Usuario:**
+  - **Actor**: Usuario
+  - **Descripción**: El usuario inicia sesión utilizando su nombre de usuario y contraseña.
+  - **Componentes Involucrados**: Frontend (Formulario de Inicio de Sesión), Backend (Controlador de Autenticación, Servicio de Autenticación), Base de Datos (Tabla de Usuarios).
+
+- **Publicación de Contenidos:**
+  - **Actor**: Usuario
+  - **Descripción**: El usuario crea una nueva publicación de texto, imagen o video.
+  - **Componentes Involucrados**: Frontend (Editor de Publicaciones), Backend (Controlador de Publicaciones, Servicio de Publicaciones), Base de Datos (Tabla de Publicaciones).
+
+- **Interacción Social:**
+  - **Actor**: Usuario
+  - **Descripción**: El usuario comenta y reacciona a publicaciones.
+  - **Componentes Involucrados**: Frontend (Interfaz de Comentarios y Reacciones), Backend (Controlador de Comentarios y Reacciones, Servicio de Interacción Social), Base de Datos (Tabla de Comentarios y Reacciones).
+
+- **Gestión de Amigos:**
+  - **Actor**: Usuario
+  - **Descripción**: El usuario envía y acepta solicitudes de amistad.
+  - **Componentes Involucrados**: Frontend (Interfaz de Gestión de Amigos), Backend (Controlador de Amigos, Servicio de Gestión de Amigos), Base de Datos (Tabla de Amigos).
+
+### 3.2 Vista Lógica
+
+La vista lógica presenta el diagrama de clases del sistema y describe los componentes lógicos principales.
+
+**Diagrama de Clases:**
+
+[Diagrama de clases aquí]
+
+**Descripción de Componentes Lógicos:**
+
+- **Usuario:**
+  - **Atributos**: id, nombre, email, contraseña, perfil
+  - **Métodos**: registrar(), autenticar(), actualizarPerfil()
+
+- **Publicación:**
+  - **Atributos**: id, contenido, fechaCreación, autor
+  - **Métodos**: crear(), editar(), eliminar()
+
+- **Comentario:**
+  - **Atributos**: id, contenido, fechaCreación, autor, publicación
+  - **Métodos**: agregar(), editar(), eliminar()
+
+- **Amigo:**
+  - **Atributos**: id, usuario, amigo
+  - **Métodos**: enviarSolicitud(), aceptarSolicitud(), rechazarSolicitud()
+
+### 3.3 Vista de Procesos
+
+La vista de procesos describe los procesos y subprocesos que el sistema manejará, así como su interacción.
+
+[Descripción de procesos aquí]
+
+### 3.4 Vista Física
+
+La vista física presenta el diagrama de despliegue que muestra cómo los componentes de software se asignan al hardware físico.
+
+[Diagrama de despliegue aquí]
+
