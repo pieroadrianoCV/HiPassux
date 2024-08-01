@@ -28,13 +28,14 @@ class UserRepository:
             return {'error': f'Ocurrió un error al eliminar el usuario: {str(e)}'}
         return {'message': 'Usuario eliminado con éxito'}
 
+    
+    
+    
+    # Función para obtener un usuario por su id
     @staticmethod
     def get_user_by_id(user_id):
         return User.query.get(user_id)
     
-    @staticmethod
-    def get_user_by_username(username):
-        return User.query.filter_by(username=username).first()
     
     @staticmethod
     def get_user_by_email(email):
@@ -56,5 +57,15 @@ class UserRepository:
     def verify_user(username, password):
         user = UserRepository.get_user_by_username(username)
         if user and user.password == password:
+            return user
+        return None
+
+    
+    @staticmethod
+    def delete_user_by_username(username):
+        user = User.query.filter_by(username=username).first()
+        if user:
+            db.session.delete(user)
+            db.session.commit()
             return user
         return None
