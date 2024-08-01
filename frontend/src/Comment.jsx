@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { HeaderPost } from './components/Header';
-import Comment from './Comment';
 import apiFetch from './services/api-fetch';
-import './static/stylesPost.css';
+import PropTypes from 'prop-types';
 
-const Post = () => {
+const Comment = ({ post_id }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    apiFetch("posts")
+    apiFetch("comments")
       .then((res) => {
         setData(res);
         setLoading(false);
@@ -20,22 +18,21 @@ const Post = () => {
   if (loading) return <p>Cargando Posts...</p>;
 
   return (
-    <div className="post-content">
-      <HeaderPost />
-      <div className="post-container">
-        {data.map((d) => (
+    <>
+        {data.filter((d) => d.post_id == post_id).map((d) => (
           <div className="post-wrapper" key={d.id}>
             <div className="post">
               <p>{d.content}</p>
-            </div>
-            <div className="comment">
-              <Comment post_id={d.id}/>
+              {/* <p>{d.user_id}</p> */}
             </div>
           </div>
         ))}
-      </div>
-    </div>
+    </>
   );
 };
 
-export default Post;
+Comment.prototype = {
+  post_id: PropTypes.string.isRequired,
+}
+
+export default Comment;
